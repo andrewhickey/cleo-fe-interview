@@ -6,7 +6,7 @@ export type Transaction = {
 
 export type Bill = {
   categoryId: number
-  iconUrl: string
+  iconUrl?: string
   id: string
   isBill: boolean
   name: string
