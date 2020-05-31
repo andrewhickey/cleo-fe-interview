@@ -1,6 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
 import BillsStore from './BillsStore'
+import bills from './bills'
+import nock from 'nock'
 
 describe('BillsStore tests', () => {
   it('can be instantiated', () => {
@@ -8,7 +8,9 @@ describe('BillsStore tests', () => {
   })
 
   it('fetches bills and stores them in state', async () => {
-    const billsStore = new BillsStore()
+    nock('http://localhost').get('/bills').reply(200, bills)
+
+    const billsStore = new BillsStore('http://localhost/bills')
     expect(billsStore.bills).toHaveLength(0)
     expect(billsStore.fetching).toBe(false)
     expect(billsStore.finished).toBe(false)

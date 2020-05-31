@@ -1,20 +1,6 @@
 import ky from 'ky/umd'
 import { observable } from 'mobx'
-
-type Transaction = {
-  amount: number
-  date: string
-  id: number
-}
-
-type Bill = {
-  categoryId: number
-  iconUrl: string
-  id: string
-  isBill: boolean
-  name: string
-  transactions: Transaction[]
-}
+import { Bill } from '../types'
 
 class BillsStore {
   endpoint: string
