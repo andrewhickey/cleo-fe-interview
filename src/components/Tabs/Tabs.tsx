@@ -15,7 +15,10 @@ function Tabs({ children }: TabsProps) {
     if (tab) {
       const title = tab.props.title
       return (
-        <div className="flex-1">
+        <div
+          className="flex-1 border-b"
+          css={{ borderColor: StyleConstants.colors.lightGrey }}
+        >
           <button
             className="w-full text-center p-4 focus:outline-none"
             css={{
@@ -31,16 +34,12 @@ function Tabs({ children }: TabsProps) {
           </button>
           <Flipped flipId={index === activeIndex ? 'active' : ''}>
             <div
-              className="w-full h-1 border-b"
+              className="w-full h-1"
               css={{
                 backgroundColor:
                   index === activeIndex
                     ? StyleConstants.colors.blue
                     : 'transparent',
-                borderColor:
-                  index === activeIndex
-                    ? StyleConstants.colors.blue
-                    : StyleConstants.colors.lightGrey,
               }}
             />
           </Flipped>
