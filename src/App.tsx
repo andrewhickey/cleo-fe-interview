@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
-import welcomeIcon from './assets/welcome.jpg'
+import { Tabs } from './components'
+import { StoreProvider } from './stores'
 
 class App extends Component {
   render() {
-    return <img src={welcomeIcon} alt="Welcome!" />
+    return (
+      <StoreProvider>
+        <Tabs />
+      </StoreProvider>
+    )
   }
 }
 
