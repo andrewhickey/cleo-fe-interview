@@ -2,10 +2,11 @@ import React from 'react'
 
 export type TabProps = {
   title: string
+  children?: React.ReactNode
 }
 
-function Tab({ title }: TabProps) {
-  return <div>{title}</div>
+function Tab({ children }: TabProps) {
+  return <div>{children}</div>
 }
 
 export default Tab
