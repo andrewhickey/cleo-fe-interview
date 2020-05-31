@@ -1,6 +1,6 @@
-import BillsStore from './BillsStore'
-import bills from './bills'
 import nock from 'nock'
+import bills from './bills'
+import BillsStore from './BillsStore'
 
 describe('BillsStore tests', () => {
   it('can be instantiated', () => {
