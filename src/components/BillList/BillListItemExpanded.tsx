@@ -1,10 +1,9 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { jsx, keyframes } from '@emotion/core'
+import { useCallback } from 'react'
+import { Flipped } from 'react-flip-toolkit'
 import defaultIcon from '../../assets/cleo_coin.jpg'
 import { Bill } from '../../stores'
-import { Flipped } from 'react-flip-toolkit'
-import { useCallback } from 'react'
-import { css, keyframes } from '@emotion/core'
 
 const appearAnimation = keyframes`
   0%   { opacity: 0; }

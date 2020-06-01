@@ -31,3 +31,4 @@
 ### TODOS
 
 - provide theme through context
+- improve test coverage around BillList

@@ -15,7 +15,7 @@ function Tabs({ children }: TabsProps) {
     if (tab) {
       const title = tab.props.title
       return (
-        <div className="flex-1">
+        <div className="flex-1 bg-white shadow-sm">
           <button
             className="w-full text-center p-4 focus:outline-none"
             css={{
@@ -46,7 +46,7 @@ function Tabs({ children }: TabsProps) {
   })
 
   return (
-    <div>
+    <div className="h-full">
       <Flipper flipKey={activeIndex}>
         <div className="flex w-full divide-x">{headings}</div>
       </Flipper>

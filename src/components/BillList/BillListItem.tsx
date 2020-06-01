@@ -1,10 +1,12 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/core'
+import { useCallback } from 'react'
+import { Flipped } from 'react-flip-toolkit'
 import defaultIcon from '../../assets/cleo_coin.jpg'
 import { Bill } from '../../stores'
-import { Flipped } from 'react-flip-toolkit'
-import { useCallback } from 'react'
-import { shouldFlip } from './utils'
+
+const shouldFlip = (id: string) => (prev: string, current: string) =>
+  id === prev || id === current
 
 type BillListItemProps = {
   bill: Bill
@@ -14,6 +16,10 @@ function BillListItem({ bill, onToggle }: BillListItemProps) {
   const handleToggle = useCallback(() => {
     onToggle(bill.id)
   }, [bill.id, onToggle])
+
+  const handleChangeState = useCallback(() => {
+    bill.isBill = !bill.isBill
+  }, [bill.isBill])
 
   const totalAmount = bill.transactions.reduce(
     (runningTotal, transaction) => runningTotal + transaction.amount,
@@ -63,6 +69,12 @@ function BillListItem({ bill, onToggle }: BillListItemProps) {
                 <h3>£{totalAmount}</h3>
               </div>
             </Flipped>
+            <button
+              onClick={handleChangeState}
+              className="flex flex-col justify-center ml-4 focus:outline-none"
+            >
+              <h3>Make not bill</h3>
+            </button>
             <Flipped
               flipId={`${bill.id}-open`}
               translate
