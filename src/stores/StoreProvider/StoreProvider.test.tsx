@@ -1,10 +1,9 @@
-import 'mobx-react-lite/batchingForReactDom'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import { StoreProvider } from './StoreProvider'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
-  ReactDOM.render(<App />, div)
+  ReactDOM.render(<StoreProvider />, div)
   ReactDOM.unmountComponentAtNode(div)
 })
