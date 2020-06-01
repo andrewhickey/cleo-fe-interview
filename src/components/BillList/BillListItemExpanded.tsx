@@ -32,13 +32,11 @@ function BillListItemExpanded({ bill, onToggle }: BillListItemExpandedProps) {
       <div className="bg-white border">
         <Flipped inverseFlipId={bill.id}>
           <div className="flex flex-col">
-            <button className="self-end py-4 px-6" onClick={handleToggle}>
-              X
-            </button>
             <button
               className="py-4 px-6 flex flex-col items-center focus:outline-none"
               onClick={handleToggle}
             >
+              <div className="self-end">X</div>
               <Flipped flipId={`${bill.id}-image`} delayUntil={bill.id}>
                 <img
                   className="w-20 h-20 rounded-full shadow-lg"

@@ -1,5 +1,6 @@
 export const StyleConstants = {
   colors: {
+    lightBlue: '#4E65FC',
     blue: '#0815FF',
     yellow: '#F7BF31',
     grey: '#5D5C61',

@@ -4,6 +4,7 @@ import { useCallback } from 'react'
 import { Flipped } from 'react-flip-toolkit'
 import defaultIcon from '../../assets/cleo_coin.jpg'
 import { Bill } from '../../stores'
+import Button from '../Button'
 
 const shouldFlip = (id: string) => (prev: string, current: string) =>
   id === prev || id === current
@@ -70,12 +71,11 @@ function BillListItem({ bill, onToggle }: BillListItemProps) {
             >
               <h3>£{totalAmount}</h3>
             </button>
-            <button
-              onClick={handleChangeState}
-              className="flex flex-col justify-center pl-4 focus:outline-none"
-            >
-              <h3>Make not bill</h3>
-            </button>
+            <div className="flex flex-col justify-center pl-4">
+              <Button onClick={handleChangeState}>
+                {bill.isBill ? 'Remove bill' : 'Add as bill'}
+              </Button>
+            </div>
             <button
               onClick={handleToggle}
               className="flex flex-col justify-center pl-4 focus:outline-none"

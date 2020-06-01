@@ -25,7 +25,7 @@ function BillList({ bills }: BillListProps) {
 
   return (
     <Flipper
-      spring="gentle"
+      spring="stiff"
       flipKey={`${expandedId} + ${bills.length}`}
       decisionData={expandedId}
       staggerConfig={{
