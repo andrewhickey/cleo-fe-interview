@@ -28,9 +28,9 @@ function BillListItem({ bill, onToggle }: BillListItemProps) {
 
   return (
     <Flipped flipId={bill.id} shouldInvert={shouldFlip(bill.id)} stagger="bill">
-      <div className="bg-white">
+      <div className="bg-white border">
         <Flipped inverseFlipId={bill.id}>
-          <div className="flex text-left py-4 px-6">
+          <div className="flex text-left py-4 px-6" onClick={handleToggle}>
             <Flipped
               flipId={`${bill.id}-image`}
               shouldFlip={shouldFlip(bill.id)}
@@ -44,13 +44,16 @@ function BillListItem({ bill, onToggle }: BillListItemProps) {
                 />
               </button>
             </Flipped>
-            <div className="flex-1 flex flex-col items-start justify-center ml-4">
+            <button
+              className="flex-1 flex flex-col items-start justify-center pl-4 focus:outline-none"
+              onClick={handleToggle}
+            >
               <Flipped
                 delayUntil={bill.id}
                 shouldFlip={shouldFlip(bill.id)}
                 flipId={`${bill.id}-name`}
               >
-                <h3>{bill.name}</h3>
+                <h3 className="font-bold">{bill.name}</h3>
               </Flipped>
               {/* TODO, get the category info from the api */}
               <Flipped
@@ -60,19 +63,22 @@ function BillListItem({ bill, onToggle }: BillListItemProps) {
               >
                 <h3>{bill.categoryId}</h3>
               </Flipped>
-            </div>
-            <div className="flex flex-col justify-center ml-4 text-lg font-bold">
+            </button>
+            <button
+              className="flex flex-col justify-center pl-4 text-lg font-bold focus:outline-none"
+              onClick={handleToggle}
+            >
               <h3>£{totalAmount}</h3>
-            </div>
+            </button>
             <button
               onClick={handleChangeState}
-              className="flex flex-col justify-center ml-4 focus:outline-none"
+              className="flex flex-col justify-center pl-4 focus:outline-none"
             >
               <h3>Make not bill</h3>
             </button>
             <button
               onClick={handleToggle}
-              className="flex flex-col justify-center ml-4 focus:outline-none"
+              className="flex flex-col justify-center pl-4 focus:outline-none"
             >
               <h3>&gt;</h3>
             </button>

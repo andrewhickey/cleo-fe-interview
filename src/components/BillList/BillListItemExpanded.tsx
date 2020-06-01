@@ -1,6 +1,6 @@
 /** @jsx jsx */
-import { jsx, keyframes, css } from '@emotion/core'
-import { useCallback, useState } from 'react'
+import { css, jsx, keyframes } from '@emotion/core'
+import { useCallback } from 'react'
 import { Flipped } from 'react-flip-toolkit'
 import defaultIcon from '../../assets/cleo_coin.jpg'
 import { Bill } from '../../stores'
@@ -29,21 +29,22 @@ function BillListItemExpanded({ bill, onToggle }: BillListItemExpandedProps) {
         }, 100)
       }}
     >
-      <div className="bg-white">
+      <div className="bg-white border">
         <Flipped inverseFlipId={bill.id}>
-          <div className="py-4 px-6">
-            <div className="flex flex-col items-center ">
-              <button className="self-end" onClick={handleToggle}>
-                X
-              </button>
+          <div className="flex flex-col">
+            <button className="self-end py-4 px-6" onClick={handleToggle}>
+              X
+            </button>
+            <button
+              className="py-4 px-6 flex flex-col items-center focus:outline-none"
+              onClick={handleToggle}
+            >
               <Flipped flipId={`${bill.id}-image`} delayUntil={bill.id}>
-                <button className="focus:outline-none" onClick={handleToggle}>
-                  <img
-                    className="w-20 h-20 rounded-full shadow-lg"
-                    src={bill.iconUrl || defaultIcon}
-                    alt={`${bill.name} logo`}
-                  />
-                </button>
+                <img
+                  className="w-20 h-20 rounded-full shadow-lg"
+                  src={bill.iconUrl || defaultIcon}
+                  alt={`${bill.name} logo`}
+                />
               </Flipped>
               <Flipped flipId={`${bill.id}-name`} delayUntil={bill.id}>
                 <h3 className="text-xl font-bold mt-4">{bill.name}</h3>
@@ -52,8 +53,8 @@ function BillListItemExpanded({ bill, onToggle }: BillListItemExpandedProps) {
               <Flipped flipId={`${bill.id}-category`} delayUntil={bill.id}>
                 <h3 className="text-l font-bold mt-2">{bill.categoryId}</h3>
               </Flipped>
-            </div>
-            <div className="divide-y text-left">
+            </button>
+            <div className="divide-y text-left px-6 pb-4">
               {bill.transactions.map((transaction, index) => (
                 <div
                   key={transaction.id}

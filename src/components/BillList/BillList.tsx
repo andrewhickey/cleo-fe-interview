@@ -25,6 +25,7 @@ function BillList({ bills }: BillListProps) {
 
   return (
     <Flipper
+      spring="gentle"
       flipKey={`${expandedId} + ${bills.length}`}
       decisionData={expandedId}
       staggerConfig={{
@@ -34,7 +35,7 @@ function BillList({ bills }: BillListProps) {
       }}
     >
       <div className="p-6">
-        <ul className="space-y-2 flex flex-col">
+        <ul className="flex flex-col">
           {bills.map((bill) => (
             <li key={bill.id}>
               {expandedId === bill.id ? (
