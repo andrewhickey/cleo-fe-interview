@@ -46,11 +46,13 @@ function Tabs({ children }: TabsProps) {
   })
 
   return (
-    <div className="h-full">
+    <div className="h-full flex flex-col">
       <Flipper flipKey={activeIndex}>
         <div className="flex w-full divide-x">{headings}</div>
       </Flipper>
-      <div>{React.Children.toArray(children)[activeIndex]}</div>
+      <div className="flex-1">
+        {React.Children.toArray(children)[activeIndex]}
+      </div>
     </div>
   )
 }

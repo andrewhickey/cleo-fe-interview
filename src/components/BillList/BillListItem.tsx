@@ -12,14 +12,15 @@ const shouldFlip = (id: string) => (prev: string, current: string) =>
 type BillListItemProps = {
   bill: Bill
   onToggle: (id: string) => void
+  onChangeIsBill: (id: string, isBill: boolean) => Promise<void>
 }
-function BillListItem({ bill, onToggle }: BillListItemProps) {
+function BillListItem({ bill, onToggle, onChangeIsBill }: BillListItemProps) {
   const handleToggle = useCallback(() => {
     onToggle(bill.id)
   }, [bill.id, onToggle])
 
   const handleChangeState = useCallback(() => {
-    bill.isBill = !bill.isBill
+    onChangeIsBill(bill.id, !bill.isBill)
   }, [bill.isBill])
 
   const totalAmount = bill.transactions.reduce(

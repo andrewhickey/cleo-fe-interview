@@ -26,6 +26,16 @@ class BillsStore {
 
     this.fetching = false
   }
+
+  setIsBill = async (billId: string, isBill: boolean) => {
+    let bill = this.bills.find((bill) => bill.id === billId)
+    if (bill) {
+      await ky
+        .patch(`${this.endpoint}/${billId}`, { json: { ...bill, isBill } })
+        .json()
+      bill.isBill = isBill
+    }
+  }
 }
 
 export default BillsStore
