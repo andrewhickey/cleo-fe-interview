@@ -6,7 +6,6 @@ import defaultIcon from '../../assets/cleo_coin.jpg'
 import { Bill } from '../../stores'
 import Button from '../Button'
 import CategoryLabel from '../CategoryLabel'
-import CategoryIcon from '../CategoryIcon'
 
 const shouldFlip = (id: string) => (prev: string, current: string) =>
   id === prev || id === current
