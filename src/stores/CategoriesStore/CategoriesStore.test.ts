@@ -25,7 +25,7 @@ describe('CategoriesStore tests', () => {
 
     expect(categoriesStore.fetching).toBe(false)
     expect(categoriesStore.finished).toBe(true)
-    expect(categoriesStore.categories).toHaveLength(9)
+    expect(categoriesStore.categories).toHaveLength(categories.length)
   })
 
   it('handles http errors and stores the response', async () => {

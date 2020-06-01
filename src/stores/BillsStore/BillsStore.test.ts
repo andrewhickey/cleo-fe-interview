@@ -25,7 +25,7 @@ describe('BillsStore tests', () => {
 
     expect(billsStore.fetching).toBe(false)
     expect(billsStore.finished).toBe(true)
-    expect(billsStore.bills).toHaveLength(9)
+    expect(billsStore.bills).toHaveLength(bills.length)
   })
 
   it('handles http errors and stores the response', async () => {
