@@ -34,7 +34,6 @@ function BillListItem({ bill, onToggle }: BillListItemProps) {
             <Flipped
               flipId={`${bill.id}-image`}
               shouldFlip={shouldFlip(bill.id)}
-              delayUntil={bill.id}
             >
               <button className="focus:outline-none" onClick={handleToggle}>
                 <img
@@ -47,7 +46,6 @@ function BillListItem({ bill, onToggle }: BillListItemProps) {
             <div className="flex-1 flex flex-col items-start justify-center ml-4">
               <Flipped
                 shouldFlip={shouldFlip(bill.id)}
-                delayUntil={bill.id}
                 flipId={`${bill.id}-name`}
               >
                 <h3>{bill.name}</h3>
@@ -56,37 +54,25 @@ function BillListItem({ bill, onToggle }: BillListItemProps) {
               <Flipped
                 flipId={`${bill.id}-category`}
                 shouldFlip={shouldFlip(bill.id)}
-                delayUntil={bill.id}
               >
                 <h3>{bill.categoryId}</h3>
               </Flipped>
             </div>
-            <Flipped
-              flipId={`${bill.id}-amount`}
-              shouldFlip={shouldFlip(bill.id)}
-            >
-              <div className="flex flex-col justify-center ml-4 text-lg font-bold">
-                <h3>£{totalAmount}</h3>
-              </div>
-            </Flipped>
+            <div className="flex flex-col justify-center ml-4 text-lg font-bold">
+              <h3>£{totalAmount}</h3>
+            </div>
             <button
               onClick={handleChangeState}
               className="flex flex-col justify-center ml-4 focus:outline-none"
             >
               <h3>Make not bill</h3>
             </button>
-            <Flipped
-              flipId={`${bill.id}-open`}
-              translate
-              shouldFlip={shouldFlip(bill.id)}
+            <button
+              onClick={handleToggle}
+              className="flex flex-col justify-center ml-4 focus:outline-none"
             >
-              <button
-                onClick={handleToggle}
-                className="flex flex-col justify-center ml-4 focus:outline-none"
-              >
-                <h3>&gt;</h3>
-              </button>
-            </Flipped>
+              <h3>&gt;</h3>
+            </button>
           </div>
         </Flipped>
       </div>

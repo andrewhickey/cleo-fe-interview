@@ -24,7 +24,10 @@ function BillList({ bills }: BillListProps) {
   )
 
   return (
-    <Flipper flipKey={expandedId} decisionData={expandedId}>
+    <Flipper
+      flipKey={`${expandedId} + ${bills.length}`}
+      decisionData={expandedId}
+    >
       <div className="p-6">
         <ul className="border divide-y shadow-sm flex flex-col bg-white">
           {bills.map((bill) => (
