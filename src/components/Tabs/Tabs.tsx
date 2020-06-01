@@ -15,10 +15,7 @@ function Tabs({ children }: TabsProps) {
     if (tab) {
       const title = tab.props.title
       return (
-        <div
-          className="flex-1 border-b"
-          css={{ borderColor: StyleConstants.colors.lightGrey }}
-        >
+        <div className="flex-1">
           <button
             className="w-full text-center p-4 focus:outline-none"
             css={{
@@ -26,7 +23,7 @@ function Tabs({ children }: TabsProps) {
               color:
                 index === activeIndex
                   ? StyleConstants.colors.blue
-                  : StyleConstants.colors.lightGrey,
+                  : StyleConstants.colors.grey,
             }}
             onClick={() => setActiveIndex(index)}
           >
@@ -51,7 +48,7 @@ function Tabs({ children }: TabsProps) {
   return (
     <div>
       <Flipper flipKey={activeIndex}>
-        <div className="flex w-full">{headings}</div>
+        <div className="flex w-full divide-x">{headings}</div>
       </Flipper>
       <div>{React.Children.toArray(children)[activeIndex]}</div>
     </div>
