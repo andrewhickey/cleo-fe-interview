@@ -1,13 +1,13 @@
 /** @jsx jsx */
-import { jsx, keyframes } from '@emotion/core'
-import { useCallback } from 'react'
+import { jsx, keyframes, css } from '@emotion/core'
+import { useCallback, useState } from 'react'
 import { Flipped } from 'react-flip-toolkit'
 import defaultIcon from '../../assets/cleo_coin.jpg'
 import { Bill } from '../../stores'
 
 const appearAnimation = keyframes`
-  0%   { opacity: 0; }
-  100% { opacity: 1; }
+  from   { opacity: 0; }
+  to { opacity: 1; }
 `
 
 type BillListItemExpandedProps = {
@@ -20,7 +20,15 @@ function BillListItemExpanded({ bill, onToggle }: BillListItemExpandedProps) {
   }, [bill.id, onToggle])
 
   return (
-    <Flipped flipId={bill.id}>
+    <Flipped
+      flipId={bill.id}
+      stagger="bill"
+      onStart={(el) => {
+        setTimeout(() => {
+          el.classList.add('animate-in')
+        }, 100)
+      }}
+    >
       <div className="bg-white">
         <Flipped inverseFlipId={bill.id}>
           <div className="py-4 px-6">
@@ -28,7 +36,7 @@ function BillListItemExpanded({ bill, onToggle }: BillListItemExpandedProps) {
               <button className="self-end" onClick={handleToggle}>
                 X
               </button>
-              <Flipped flipId={`${bill.id}-image`}>
+              <Flipped flipId={`${bill.id}-image`} delayUntil={bill.id}>
                 <button className="focus:outline-none" onClick={handleToggle}>
                   <img
                     className="w-20 h-20 rounded-full shadow-lg"
@@ -37,22 +45,27 @@ function BillListItemExpanded({ bill, onToggle }: BillListItemExpandedProps) {
                   />
                 </button>
               </Flipped>
-              <Flipped flipId={`${bill.id}-name`}>
+              <Flipped flipId={`${bill.id}-name`} delayUntil={bill.id}>
                 <h3 className="text-xl font-bold mt-4">{bill.name}</h3>
               </Flipped>
               {/* TODO, get the category info from the api */}
-              <Flipped flipId={`${bill.id}-category`}>
+              <Flipped flipId={`${bill.id}-category`} delayUntil={bill.id}>
                 <h3 className="text-l font-bold mt-2">{bill.categoryId}</h3>
               </Flipped>
             </div>
-            <div
-              className="divide-y text-left"
-              css={{
-                animation: `${appearAnimation} 0.4s ease-in`,
-              }}
-            >
-              {bill.transactions.map((transaction) => (
-                <div key={transaction.id} className="flex py-4 px-6">
+            <div className="divide-y text-left">
+              {bill.transactions.map((transaction, index) => (
+                <div
+                  key={transaction.id}
+                  className="flex py-4 px-6"
+                  css={css`
+                    opacity: 0;
+                    .animate-in & {
+                      animation: ${appearAnimation} 0.5s forwards;
+                      animation-delay: ${0.1 * index}s;
+                    }
+                  `}
+                >
                   <div className="flex-1 flex flex-col justify-center">
                     <h3>{transaction.date}</h3>
                   </div>

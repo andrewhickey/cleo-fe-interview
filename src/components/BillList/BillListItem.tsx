@@ -27,13 +27,14 @@ function BillListItem({ bill, onToggle }: BillListItemProps) {
   )
 
   return (
-    <Flipped flipId={bill.id} shouldInvert={shouldFlip(bill.id)}>
+    <Flipped flipId={bill.id} shouldInvert={shouldFlip(bill.id)} stagger="bill">
       <div className="bg-white">
         <Flipped inverseFlipId={bill.id}>
           <div className="flex text-left py-4 px-6">
             <Flipped
               flipId={`${bill.id}-image`}
               shouldFlip={shouldFlip(bill.id)}
+              delayUntil={bill.id}
             >
               <button className="focus:outline-none" onClick={handleToggle}>
                 <img
@@ -45,6 +46,7 @@ function BillListItem({ bill, onToggle }: BillListItemProps) {
             </Flipped>
             <div className="flex-1 flex flex-col items-start justify-center ml-4">
               <Flipped
+                delayUntil={bill.id}
                 shouldFlip={shouldFlip(bill.id)}
                 flipId={`${bill.id}-name`}
               >
@@ -52,6 +54,7 @@ function BillListItem({ bill, onToggle }: BillListItemProps) {
               </Flipped>
               {/* TODO, get the category info from the api */}
               <Flipped
+                delayUntil={bill.id}
                 flipId={`${bill.id}-category`}
                 shouldFlip={shouldFlip(bill.id)}
               >

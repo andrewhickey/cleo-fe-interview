@@ -27,9 +27,14 @@ function BillList({ bills }: BillListProps) {
     <Flipper
       flipKey={`${expandedId} + ${bills.length}`}
       decisionData={expandedId}
+      staggerConfig={{
+        bill: {
+          reverse: expandedId !== null,
+        },
+      }}
     >
       <div className="p-6">
-        <ul className="border divide-y shadow-sm flex flex-col bg-white">
+        <ul className="space-y-2 flex flex-col">
           {bills.map((bill) => (
             <li key={bill.id}>
               {expandedId === bill.id ? (
