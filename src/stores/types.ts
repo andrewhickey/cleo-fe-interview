@@ -12,3 +12,9 @@ export type Bill = {
   name: string
   transactions: Transaction[]
 }
+
+export type Category = {
+  iconUrl: string
+  id: number
+  name: string
+}

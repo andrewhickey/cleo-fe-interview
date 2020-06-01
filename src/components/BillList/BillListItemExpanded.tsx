@@ -4,6 +4,7 @@ import { useCallback } from 'react'
 import { Flipped } from 'react-flip-toolkit'
 import defaultIcon from '../../assets/cleo_coin.jpg'
 import { Bill } from '../../stores'
+import CategoryLabel from '../CategoryLabel'
 
 const appearAnimation = keyframes`
   from   { opacity: 0; }
@@ -47,9 +48,8 @@ function BillListItemExpanded({ bill, onToggle }: BillListItemExpandedProps) {
               <Flipped flipId={`${bill.id}-name`} delayUntil={bill.id}>
                 <h3 className="text-xl font-bold mt-4">{bill.name}</h3>
               </Flipped>
-              {/* TODO, get the category info from the api */}
               <Flipped flipId={`${bill.id}-category`} delayUntil={bill.id}>
-                <h3 className="text-l font-bold mt-2">{bill.categoryId}</h3>
+                <CategoryLabel categoryId={bill.categoryId} />
               </Flipped>
             </button>
             <div className="divide-y text-left px-6 pb-4">

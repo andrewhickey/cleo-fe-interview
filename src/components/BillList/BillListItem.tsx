@@ -5,6 +5,8 @@ import { Flipped } from 'react-flip-toolkit'
 import defaultIcon from '../../assets/cleo_coin.jpg'
 import { Bill } from '../../stores'
 import Button from '../Button'
+import CategoryLabel from '../CategoryLabel'
+import CategoryIcon from '../CategoryIcon'
 
 const shouldFlip = (id: string) => (prev: string, current: string) =>
   id === prev || id === current
@@ -21,7 +23,7 @@ function BillListItem({ bill, onToggle, onChangeIsBill }: BillListItemProps) {
 
   const handleChangeState = useCallback(() => {
     onChangeIsBill(bill.id, !bill.isBill)
-  }, [bill.isBill])
+  }, [bill, onChangeIsBill])
 
   const totalAmount = bill.transactions.reduce(
     (runningTotal, transaction) => runningTotal + transaction.amount,
@@ -32,20 +34,31 @@ function BillListItem({ bill, onToggle, onChangeIsBill }: BillListItemProps) {
     <Flipped flipId={bill.id} shouldInvert={shouldFlip(bill.id)} stagger="bill">
       <div className="bg-white border">
         <Flipped inverseFlipId={bill.id}>
-          <div className="flex text-left py-4 px-6" onClick={handleToggle}>
-            <Flipped
-              flipId={`${bill.id}-image`}
-              shouldFlip={shouldFlip(bill.id)}
-              delayUntil={bill.id}
+          <div className="flex text-left">
+            <button
+              className="py-4 px-6 focus:outline-none"
+              onClick={handleToggle}
             >
-              <button className="focus:outline-none" onClick={handleToggle}>
-                <img
-                  className="w-12 h-12 rounded-full shadow-lg"
-                  src={bill.iconUrl || defaultIcon}
-                  alt={`${bill.name} logo`}
-                />
-              </button>
-            </Flipped>
+              <div className="relative">
+                <Flipped
+                  flipId={`${bill.id}-image`}
+                  shouldFlip={shouldFlip(bill.id)}
+                  delayUntil={bill.id}
+                >
+                  <img
+                    className="w-12 h-12 rounded-full shadow-lg"
+                    src={bill.iconUrl || defaultIcon}
+                    alt={`${bill.name} logo`}
+                  />
+                </Flipped>
+                {/* <div className="absolute right-0 top-0 bg-white rounded-full p-1 shadow-lg">
+                    <CategoryIcon
+                      className="h-3 w-3"
+                      categoryId={bill.categoryId}
+                    />
+                  </div> */}
+              </div>
+            </button>
             <button
               className="flex-1 flex flex-col items-start justify-center pl-4 focus:outline-none"
               onClick={handleToggle}
@@ -57,13 +70,12 @@ function BillListItem({ bill, onToggle, onChangeIsBill }: BillListItemProps) {
               >
                 <h3 className="font-bold">{bill.name}</h3>
               </Flipped>
-              {/* TODO, get the category info from the api */}
               <Flipped
                 delayUntil={bill.id}
                 flipId={`${bill.id}-category`}
                 shouldFlip={shouldFlip(bill.id)}
               >
-                <h3>{bill.categoryId}</h3>
+                <CategoryLabel categoryId={bill.categoryId} />
               </Flipped>
             </button>
             <button
@@ -79,7 +91,7 @@ function BillListItem({ bill, onToggle, onChangeIsBill }: BillListItemProps) {
             </div>
             <button
               onClick={handleToggle}
-              className="flex flex-col justify-center pl-4 focus:outline-none"
+              className="flex flex-col justify-center px-4 focus:outline-none"
             >
               <h3>&gt;</h3>
             </button>

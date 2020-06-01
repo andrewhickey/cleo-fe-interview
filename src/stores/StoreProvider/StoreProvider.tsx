@@ -1,11 +1,14 @@
 import React, { createContext, useContext, useState } from 'react'
 import BillsStore from '../BillsStore'
+import CategoriesStore from '../CategoriesStore'
 
 const createStores = () => {
   const billsStore = new BillsStore()
+  const categoriesStore = new CategoriesStore()
 
   const stores = {
     billsStore,
+    categoriesStore,
   }
 
   return stores

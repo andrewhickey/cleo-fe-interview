@@ -32,3 +32,4 @@
 
 - provide theme through context
 - improve test coverage around BillList
+- improve error handling and test coverage around patches
